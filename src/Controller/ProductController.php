@@ -47,7 +47,7 @@ class ProductController extends AbstractController {
     }
 
     /**
-     * @Route("/{slug}", name="show_product")
+     * @Route("product/{slug}", name="show_product")
      */
     public function show($slug, ProductRepository $productRepository)
     {

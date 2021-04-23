@@ -3,6 +3,13 @@
 {% block title %}{{product.name}}{% endblock %}
 
 {% block body %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{path('homepage')}}">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">{{product.category.name}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{product.name}}</li>
+    </ol>
+  </nav>
 <div class="row mt-5 d-flex  justify-content-center rounded shadow ">
     <div class="col-4  p-2">
         <img class="img-fluid rounded shadow" src="{{product.picture}}" alt="{{product.picture}}">
