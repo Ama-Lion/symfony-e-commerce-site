@@ -47,6 +47,24 @@ class ProductController extends AbstractController {
     }
 
     /**
+     * @Route("/{slug}", name="show_product")
+     */
+    public function show($slug, ProductRepository $productRepository)
+    {
+    
+    $product = $productRepository->findOneBy([
+        'slug' => $slug
+    ]);
+
+    if(!$product){
+        throw $this->createNotFoundException("this product does not exists mehn");
+    }
+    return $this->render('product/show_product.html.twig', [
+        'product' => $product
+    ]);
+    }
+
+    /**
      * @Route("/{slug}", name="product_category")
      */
     public function getProductByCategory($slug, CategoryRepository $categoryRepository)
@@ -57,7 +75,6 @@ class ProductController extends AbstractController {
             throw $this->createNotFoundException("Category not found mehnnn");
         }
         return $this->render('product/category.html.twig', [
-            // 'products' => $product,
             'slug' => $slug,
             'category' => $category,
         ]);

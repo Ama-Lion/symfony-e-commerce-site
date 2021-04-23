@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{product.name}}{% endblock %}
+
+{% block body %}
+<div class="row mt-5 d-flex  justify-content-center rounded shadow ">
+    <div class="col-4  p-2">
+        <img class="img-fluid rounded shadow" src="{{product.picture}}" alt="{{product.picture}}">
+    </div>
+    <div class="col-5 mr-3 p-2 d-flex flex-column justify-content-center ">
+        <h3>{{product.name}}</h3>
+        <span class="bg-info p-1 rounded w-50">{{product.category.name}}</span>
+        <p>{{product.price / 100}}€</p>
+        <p>{{product.description}}</p>
+        <button class="btn btn-outline-success btn-lg">
+            Add to cart
+            <i class="fas fa-shopping-cart"></i>
+        </button>
+    </div>
+</div>
+{% endblock %}
