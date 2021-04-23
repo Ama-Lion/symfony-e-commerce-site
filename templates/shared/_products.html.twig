@@ -1,0 +1,18 @@
+<div class="row">
+{% for product in products %}
+<div class="col">
+    <div class="card shadow m-2" style="width: 18rem;">
+        <img src="{{product.picture}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <span class="bg-info p-1 rounded ">{{product.category.name}}</span>
+          <h5 class="card-title">{{product.price / 100}}€</h5>
+          <p class="card-title">{{ product.description| raw|length > 50 ? product.description| raw|slice(0, 50) ~ '...' :
+            product.description| raw }}</p>
+          <a href="#" class="btn btn-primary">Details</a>
+          <a href="#" class="btn btn-success">Add To Cart</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
