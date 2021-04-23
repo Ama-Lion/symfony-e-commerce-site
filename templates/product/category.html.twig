@@ -1,0 +1,13 @@
+{% extends 'base.html.twig'%}
+{% block title %}
+    Categories
+{% endblock title %}
+{% block body %}
+<div class="rounded shadow p-3 text-center mt-4">
+    <h1> <span class="text-secondary">Category :</span>  {{category.name}}</h1>
+</div>
+
+{% include "shared/_products.html.twig" with {
+    'products' : category.products
+}%}
+{% endblock %}
