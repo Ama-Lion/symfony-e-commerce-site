@@ -10,8 +10,8 @@
                 <img src="{{product.picture}}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{product.name}}</h5>
-                  <small class="card-title">{{product.category.name}}</small>
-                  <h5 class="card-title">{{product.price}}€</h5>
+                  <span class="bg-info p-1 rounded ">{{product.category.name}}</span>
+                  <h5 class="card-title">{{product.price / 100}}€</h5>
                   <p class="card-title">{{ product.description| raw|length > 50 ? product.description| raw|slice(0, 50) ~ '...' :
                     product.description| raw }}</p>
                   <a href="#" class="btn btn-primary">Details</a>

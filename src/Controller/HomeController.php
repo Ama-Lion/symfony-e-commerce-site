@@ -12,7 +12,7 @@ class HomeController extends AbstractController {
      * @Route("/", name="homepage")
      */
     public function homepage (ProductRepository $productRepository) {
-        $product = $productRepository->findAll();
+        $product = $productRepository->findBy([], [], 3);
 
         return $this->render('homepage.html.twig', [
             'products' => $product
