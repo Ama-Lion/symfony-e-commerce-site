@@ -4,9 +4,12 @@
     <div class=" p-3 rounded shadow">
         <h3>Add your product</h3>
         {{ form_start(form)}}
-        {{ form_row(form.name, {'attr': {'placeholder': "Product name"}}) }}
-        {{ form_row(form.price, {'attr': {'placeholder': "Product price"}}) }}
-        {{ form_row(form.slug, {'attr': {'placeholder': "Product Slug"}}) }}
+        {{ form_row(form.name, {'attr': {'placeholder': "Name"}}) }}
+        {{ form_row(form.price, {'attr': {'placeholder': "Price"}}) }}
+        {{ form_row(form.slug, {'attr': {'placeholder': "Slug"}}) }}
+        {{ form_row(form.category) }}
+        {{ form_row(form.description, {'attr': {'placeholder': "Description"}}) }}
+        {{ form_row(form.picture, {'attr': {'placeholder': "Image"}}) }}
         <button type="submit" class="mt-4 btn btn-success">
             Add Product
         </button>
