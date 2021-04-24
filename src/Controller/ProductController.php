@@ -76,7 +76,7 @@ class ProductController extends AbstractController {
     }
 
     /**
-     * @Route("/{slug}", name="product_category")
+     * @Route("category/{slug}", name="product_category")
      */
     public function getProductByCategory($slug, CategoryRepository $categoryRepository)
     {
