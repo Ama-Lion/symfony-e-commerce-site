@@ -28,7 +28,7 @@ class ProductController extends AbstractController {
     /**
      * @Route("/add", name="add-product")
      */
-    public function add (Product $product = null, Request $request, EntityManagerInterface $manager) 
+    public function createProduct (Product $product = null, Request $request, EntityManagerInterface $manager) 
     {
         //create an istance of my new product
         $product = new Product();
