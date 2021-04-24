@@ -25,18 +25,15 @@
                 </tbody>
             </table>
         </div>
-        {# <div class="col-sm">
+        <div class="col-sm">
             <div class=" p-3 rounded shadow">
                 <h3>Add Category</h3>
-                {{ form_start(formCategory)}}
-                {{ form_row(formCategory.title, {'attr': {'placeholder': "Title of the Category"}}) }}
-                {{ form_row(formCategory.description, {'attr': {'placeholder': "Description of the Category"}}) }}
-                <button type="submit" class="btn btn-success">
-                    Save
-                </button>
+                {{ form_start(form)}}
+                {{ form_row(form.name, {'attr': {'placeholder': "Category name"}}) }}
+                <button type="submit" class="btn btn-success mt-3">Save</button>
             </div>
-            {{ form_end(formCategory) }}
-        </div> #}
+            {{ form_end(form) }}
+        </div>
     </div>
 </div>
 {% endblock %}
