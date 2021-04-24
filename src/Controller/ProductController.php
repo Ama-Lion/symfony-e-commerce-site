@@ -13,6 +13,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController {
 
+    /**
+     * @Route("/products", name="products")
+     */
+    public function showProducts (ProductRepository $productRepository) 
+    {
+        $product = $productRepository->findBy([], [], 3);
+
+        return $this->render('product/products.html.twig', [
+            'products' => $product
+        ]);
+    }
 
     /**
      * @Route("/add", name="add-product")
@@ -79,4 +90,6 @@ class ProductController extends AbstractController {
             'category' => $category,
         ]);
     }
+
+
 }

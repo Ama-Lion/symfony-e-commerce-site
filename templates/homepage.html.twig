@@ -3,18 +3,5 @@
     home
 {% endblock title %}
 {% block body %}
-<div class="rounded shadow p-3 text-center mt-4 d-flex justify-content-around">
-    <a class="nav-link" href="music-automotive-and-baby">
-        Music, Automotive & Baby
-    </a>
-    <a class="nav-link" href="computers-and-toys">
-        Computers & Toys
-    </a>
-    <a class="nav-link" href="sports-and-industrial">
-        Sports & Industrial
-    </a>
-</div>
-    {% include "shared/_products.html.twig" with {
-        'products' : products
-    }%}
+    <h1 class="rounded shadow p-3 text-center mt-4 d-flex justify-content-around">homepage</h1>
 {% endblock body %}
