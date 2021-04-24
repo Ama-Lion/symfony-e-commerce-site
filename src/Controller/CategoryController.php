@@ -54,28 +54,41 @@ class CategoryController extends AbstractController
     /**
      * @Route("admin/category/{id}/edit", name="edit_category")
      */
-    public function editCategories ($id, CategoryRepository $categoryRepository)
+    public function editCategories 
+    (
+        $id, 
+        CategoryRepository $categoryRepository,
+        Request $request,
+        EntityManagerInterface $manager
+    )
     {
-        $categories = $categoryRepository->findAll();
-        if(!$categories){
-            throw $this->createNotFoundException("Category not found mehnnn");
+        $category = $categoryRepository->find($id);
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+           $manager->flush();
+           $this->addFlash('info', 'Category' . ' ' .$category->getName() . ' '. 'updated successfully');
+           return $this->redirectToRoute('categories');
         }
-        return $this->render('category/view_categories.html.twig', [
-            'categories' => $categories,
+        return $this->render('category/edit_Category.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("admin/category/{id}/delete", name="delete_category")
      */
-    public function deleteCategories ($id, CategoryRepository $categoryRepository)
+    public function deleteCategories 
+    (
+        $id, 
+        CategoryRepository $categoryRepository,
+        EntityManagerInterface $manager
+    )
     {
-        $categories = $categoryRepository->findAll();
-        if(!$categories){
-            throw $this->createNotFoundException("Category not found mehnnn");
-        }
-        return $this->render('category/view_categories.html.twig', [
-            'categories' => $categories,
-        ]);
+        $category = $categoryRepository->find($id);
+        $manager->remove($category);
+        $this->addFlash('erro', 'Category' . ' ' .$category->getName() . ' '. 'deleted successfully');
+        return $this->redirectToRoute('categories');
     }
 }

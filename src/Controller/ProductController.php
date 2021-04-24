@@ -56,7 +56,7 @@ class ProductController extends AbstractController {
             $manager->persist($product);
             $manager->flush();
 
-            $this->addFlash('success', 'Product created successfully');
+            $this->addFlash('success', 'Product' . ' ' .$product->getName() . ' ' . 'created successfully');
             // redirect to homepage
             return $this->redirectToRoute('show_product', [
                 'slug' => $product->getSlug()
@@ -91,7 +91,7 @@ class ProductController extends AbstractController {
             return $this->redirectToRoute('show_product', [
                 'slug' => $product->getSlug()
             ]);
-            $this->addFlash('info', 'Product updated successfully');
+            $this->addFlash('info', 'Product' . ' ' .$product->getName() . ' ' . 'updated successfully');
         }
 
         return $this->render('product/edit.html.twig', [
@@ -112,7 +112,7 @@ class ProductController extends AbstractController {
         $product = $productRepository->find($id);
         $manager->remove($product);
         $manager->flush();
-        $this->addFlash('success', 'Product deleted successfully');
+        $this->addFlash('success', 'Product' . ' ' .$product->getName() . ' ' . 'deleted successfully');
         return $this->redirectToRoute('products');
     }
 

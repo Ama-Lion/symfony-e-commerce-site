@@ -3,5 +3,13 @@
 {% block title %}edit category{% endblock %}
 
 {% block body %}
-<h1>Edit Categories</h1>
+<div class="container" >
+    <div class=" p-3 rounded shadow">
+        <h3>Add Category</h3>
+        {{ form_start(form)}}
+        {{ form_row(form.name, {'attr': {'placeholder': "Category name"}}) }}
+        <button type="submit" class="btn btn-success mt-3">Save</button>
+    </div>
+    {{ form_end(form) }}
+</div>
 {% endblock %}
