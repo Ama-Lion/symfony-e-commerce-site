@@ -9,6 +9,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController {
@@ -28,7 +29,13 @@ class ProductController extends AbstractController {
     /**
      * @Route("/add", name="add-product")
      */
-    public function createProduct (Product $product = null, Request $request, EntityManagerInterface $manager) 
+    public function createProduct 
+    (
+        Product $product = null, 
+        Request $request, 
+        EntityManagerInterface $manager,
+        SluggerInterface $slugger
+    ) 
     {
         //create an istance of my new product
         $product = new Product();
@@ -43,6 +50,8 @@ class ProductController extends AbstractController {
         if ($form->isSubmitted() && $form->isValid()) 
         {
 
+            $product->setSlug(strtolower($slugger->slug($product->getName())));
+             
             // presist and flush item
             $manager->persist($product);
             $manager->flush();
