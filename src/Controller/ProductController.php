@@ -133,7 +133,7 @@ class ProductController extends AbstractController {
         'product' => $product
     ]);
     }
-
+ 
     /**
      * @Route("category/{slug}", name="product_category")
      */
