@@ -27,7 +27,7 @@ class ProductController extends AbstractController {
     }
 
     /**
-     * @Route("/add", name="add-product")
+     * @Route("/admin/products/create", name="create_product")
      */
     public function createProduct 
     (
@@ -57,7 +57,9 @@ class ProductController extends AbstractController {
             $manager->flush();
 
             // redirect to homepage
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('show_product', [
+                'slug' => $product->getSlug()
+            ]);
         }
 
         return $this->render('product/add_product.html.twig', [
@@ -65,11 +67,53 @@ class ProductController extends AbstractController {
             'form' => $form->createView()
         ]);
     }
+    
+    /**
+     * @Route("/admin/product/edit/{id}", name="edit_product")
+     */
+    public function editProduct
+    (
+        $id,
+        ProductRepository $productRepository,
+        Request $request, 
+        EntityManagerInterface $manager
+    )
+    {
+    
+        $product = $productRepository->find($id);
+
+        $form = $this->createForm(ProductType::class, $product);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()){
+            $manager->flush();
+            return $this->redirectToRoute('show_product', [
+                'slug' => $product->getSlug()
+            ]);
+        }
+
+        return $this->render('product/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/admin/product/delete/{id}", name="delete_product")
+     */
+    public function deleteProduct
+    (
+        ProductRepository $productRepository,
+        EntityManagerInterface $manager
+    )
+    {
+        $product = $productRepository->find($id);
+    }
 
     /**
      * @Route("product/{slug}", name="show_product")
      */
-    public function show($slug, ProductRepository $productRepository)
+    public function productDetails($slug, ProductRepository $productRepository)
     {
     
     $product = $productRepository->findOneBy([

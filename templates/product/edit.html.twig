@@ -1,0 +1,27 @@
+{% extends 'base.html.twig'%}
+{% block title %}
+    Add product
+{% endblock title %}
+{% block body %}
+<div class="container mt-5">
+    <div class=" p-3 rounded shadow">
+        <h3>Add your product</h3>
+        {{ form_start(form)}}
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.name, {'attr': {'placeholder': "Name"}}) }}
+                {{ form_row(form.price, {'attr': {'placeholder': "Price"}}) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.category) }}
+                {{ form_row(form.picture, {'attr': {'placeholder': "Image"}}) }}
+            </div>
+        </div>
+        {{ form_row(form.description, {'attr': {'placeholder': "Description"}}) }}
+        <button type="submit" class="mt-4 btn btn-success">
+            Update Product
+        </button>
+    </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

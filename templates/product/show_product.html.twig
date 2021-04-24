@@ -11,6 +11,10 @@
       <li class="breadcrumb-item active" aria-current="page">{{product.name}}</li>
     </ol>
   </nav>
+<div class="d-flex">
+    <a href="{{path('edit_product', {'id': product.id})}}" class="btn btn-warning m-2">Edit</a>
+    <a href="{{path('delete_product', {'id': product.id})}}" class="btn btn-danger m-2">Delete</a>
+</div>
 <div class="row mt-5 d-flex  justify-content-center rounded shadow ">
     <div class="col-4  p-2">
         <img class="img-fluid rounded shadow" src="{{product.picture}}" alt="{{product.picture}}">
