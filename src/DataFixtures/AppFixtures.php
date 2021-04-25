@@ -50,22 +50,22 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        for($c = 0; $c < 3; $c++) {
-            $category = new Category;
-            $category->setName($faker->department)
-                    ->setSlug(strtolower($this->slugger->slug($category->getName())));
-            $manager->persist($category);
-            for($i = 0; $i < mt_rand(12, 15); $i++){
-                $product = new Product();
-                $product->setName($faker->productName)
-                        ->setPrice($faker->price(4000, 20000))
-                        ->setSlug(strtolower($this->slugger->slug($product->getName())))
-                        ->setCategory($category)
-                        ->setDescription($faker->paragraph)
-                        ->setPicture($faker->imageUrl(400, 400, true));
-                $manager->persist($product);
-            }
-        }
+        // for($c = 0; $c < 3; $c++) {
+        //     $category = new Category;
+        //     $category->setName($faker->department)
+        //             ->setSlug(strtolower($this->slugger->slug($category->getName())));
+        //     $manager->persist($category);
+        //     for($i = 0; $i < mt_rand(12, 15); $i++){
+        //         $product = new Product();
+        //         $product->setName($faker->productName)
+        //                 ->setPrice($faker->price(4000, 20000))
+        //                 ->setSlug(strtolower($this->slugger->slug($product->getName())))
+        //                 ->setCategory($category)
+        //                 ->setDescription($faker->paragraph)
+        //                 ->setPicture($faker->imageUrl(400, 400, true));
+        //         $manager->persist($product);
+        //     }
+        // }
 
         $manager->flush();
     }

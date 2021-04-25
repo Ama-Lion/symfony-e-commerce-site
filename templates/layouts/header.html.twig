@@ -24,6 +24,8 @@
             <div class="mt-3 mt-md-0">
             {% if app.user %}
             <a href="{{path('security_logout')}}" class="btn btn-primary"> Sign out </a>
+            <a href="{{path('create_product')}}" class="btn btn-outline-primary">Add item</a>
+            <a href="{{path('categories')}}" class="btn btn-outline-primary">Add category</a>
             {% else %}
                 <a href="{{path('security_login')}}" class="btn btn-outline-primary"> Login </a>
                 <a href="" class="btn btn-primary"> Sign up </a>

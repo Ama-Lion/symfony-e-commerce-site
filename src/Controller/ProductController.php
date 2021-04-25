@@ -37,6 +37,7 @@ class ProductController extends AbstractController {
         SluggerInterface $slugger
     ) 
     {
+
         //create an istance of my new product
         $product = new Product();
 
@@ -49,7 +50,7 @@ class ProductController extends AbstractController {
         // check if form is submitted
         if ($form->isSubmitted() && $form->isValid()) 
         {
-
+            $product->setOwner($this->getUser());
             $product->setSlug(strtolower($slugger->slug($product->getName())));
              
             // presist and flush item
