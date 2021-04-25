@@ -18,7 +18,9 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('price', MoneyType::class)
+            ->add('price', MoneyType::class, [
+                'divisor' => 100
+            ])
             ->add('picture')
             ->add('description')
             ->add('category', EntityType::class, [
@@ -26,9 +28,6 @@ class ProductType extends AbstractType
                 'choice_label' => 'name',
                 'placeholder' => '---choose category---'
             ]);
-
-        //transform money to real 
-        $builder->get('price')->addModelTransformer(new CentimesTransformer);
     }
 
     public function configureOptions(OptionsResolver $resolver)
