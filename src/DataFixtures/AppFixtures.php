@@ -9,14 +9,16 @@ use App\Entity\Category;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
     protected $slugger;
-
-    public function __construct(SluggerInterface $slugger)
+    protected $encoder;
+    public function __construct(SluggerInterface $slugger, UserPasswordEncoderInterface $encoder)
     {
         $this->slugger = $slugger;
+        $this->encoder = $encoder;
     }
 
     public function load(ObjectManager $manager)
@@ -27,19 +29,23 @@ class AppFixtures extends Fixture
         $faker->addProvider(new \Bluemmb\Faker\PicsumPhotosProvider($faker));
 
         $admin = new User();
+        $hashedPassword = $this->encoder->encodePassword($admin, "password");
+
         $admin->setEmail("admin@gmail.com")
-            ->setPassword("admin")
-            ->setFirstName("admin")
-            ->setLastName("lion")
-            ->setRoles(['ROLE_ADMIN']);
+        ->setPassword($hashedPassword)
+        ->setFirstName("admin")
+        ->setLastName("lion")
+        ->setRoles(['ROLE_ADMIN']);
         $manager->persist($admin);
+        
 
         for($u = 0; $u < 4; $u++){
             $user = new User();
+            $hashedPassword = $this->encoder->encodePassword($user, "password");
             $user->setEmail("user$u@gmail.com")
                 ->setFirstName($faker->firstName())
                 ->setLastName($faker->lastName())
-                ->setPassword("password");
+                ->setPassword($hashedPassword);
             
             $manager->persist($user);
         }
