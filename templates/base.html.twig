@@ -34,7 +34,10 @@
         {% endblock %}
     </head>
     <body>
+        {# header #}
         {% include "layouts/header.html.twig" %}
+
+        {# symfony flashes bags #}
         <div class="container">
             {% for message in app.flashes('success') %}
             <div class="alert alert-success tex">
@@ -52,6 +55,11 @@
             </div>
             {% endfor %}
         </div>
+
+        {# main body #}
        <div class="container"> {% block body %}{% endblock %}</div>
+
+       {# footer #}
+       {% include "layouts/footer.html.twig" %}
     </body>
 </html>
