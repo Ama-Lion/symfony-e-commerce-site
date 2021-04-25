@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SecurityController!{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    {% if error %}
+        <div class="alert alert-danger">
+            {{error.message}}
+        </div>
+        {# {% else %}
+        <div class="alert alert-success">
+          Logged in successfully
+        </div> #}
+    {% endif %}
+    <div class=" p-3 rounded shadow">
+        <h3>Login</h3>
+        {{ form_start(form)}}
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.email) }}
+                {{ form_row(form.password) }}
+            </div>
+        </div>
+        <button type="submit" class="mt-4 btn btn-success">
+           Login
+        </button>
+    </div>
+    {{ form_end(form) }}
+</div
+{% endblock %}
+
+
+
+
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Hello SecurityController!{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class=" p-3 rounded shadow">
+        <h3>Login</h3>
+        {{ form_start(form)}}
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.firstName, {'attr': {'placeholder': "First Name"}}) }}
+                {{ form_row(form.lastName, {'attr': {'placeholder': "Last Name"}}) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.email) }}
+                {{ form_row(form.password, {'attr': {'placeholder': "Image"}}) }}
+            </div>
+        </div>
+        {{ form_row(form.description, {'attr': {'placeholder': "Description"}}) }}
+        <button type="submit" class="mt-4 btn btn-success">
+           Login
+        </button>
+    </div>
+    {{ form_end(form) }}
+</div
+{% endblock %} #}
