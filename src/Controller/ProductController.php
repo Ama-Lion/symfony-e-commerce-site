@@ -82,6 +82,7 @@ class ProductController extends AbstractController {
     {
     
         $product = $productRepository->find($id);
+        $this->denyAccessUnlessGranted('CAN_EDIT', $product);
 
         $form = $this->createForm(ProductType::class, $product);
 
