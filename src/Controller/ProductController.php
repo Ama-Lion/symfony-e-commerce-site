@@ -76,7 +76,7 @@ class ProductController extends AbstractController {
     (
         $id,
         ProductRepository $productRepository,
-        Request $request, 
+        Request $request,
         EntityManagerInterface $manager
     )
     {
