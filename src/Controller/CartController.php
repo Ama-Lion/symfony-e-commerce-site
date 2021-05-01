@@ -39,10 +39,27 @@ class CartController extends AbstractController
     {
         $detailedCart = $cartService->getDetailedItems();
         $total = $cartService->getTotal() ;
-        
+
         return $this->render('cart/index.html.twig', [
             'items' => $detailedCart,
             'total' => $total
         ]);
+    }
+
+    /**
+     * @Route("/cart/delete/{id}", name="cart_delete")
+     */
+    public function delete($id, ProductRepository $productRepository, CartService $cartService)
+    {
+        $product = $productRepository->find($id);
+        if(!$product){
+            throw $this->createNotFoundException("The product '$id' does not exist and can't not be deleted");
+        }
+
+        $cartService->remove($id);
+
+        $this->addFlash('success', 'Product deleted successfully');
+
+        return $this->redirectToRoute('cart_show');
     }
 }
