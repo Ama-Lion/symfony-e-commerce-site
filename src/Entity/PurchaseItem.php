@@ -48,6 +48,11 @@ class PurchaseItem
      */
     private $total;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $productImage;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +126,18 @@ class PurchaseItem
     public function setTotal(int $total): self
     {
         $this->total = $total;
+
+        return $this;
+    }
+
+    public function getProductImage(): ?string
+    {
+        return $this->productImage;
+    }
+
+    public function setProductImage(?string $productImage): self
+    {
+        $this->productImage = $productImage;
 
         return $this;
     }

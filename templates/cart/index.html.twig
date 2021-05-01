@@ -39,14 +39,13 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {{ form_start(confirmationForm) }}
+                    {{ form_start(confirmationForm, {'action': path('purchase_confirm')} )}}
                     {{ form_widget(confirmationForm) }}
                     <button type="submit" class="btn btn-success">
                         Confirm
                     </button>
                     {{ form_end(confirmationForm) }}
                 </div>
-
             </div>
         </div>
     </div>
