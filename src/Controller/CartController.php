@@ -22,7 +22,7 @@ class CartController extends AbstractController
         if (!$product) {
             throw $this->createNotFoundException("The product $id does not exist");
         }
-        
+
         $cartService->add($id);
 
         $this->addFlash('success', 'Product Added Successfully');
@@ -39,7 +39,7 @@ class CartController extends AbstractController
     {
         $detailedCart = $cartService->getDetailedItems();
         $total = $cartService->getTotal() ;
-
+        
         return $this->render('cart/index.html.twig', [
             'items' => $detailedCart,
             'total' => $total

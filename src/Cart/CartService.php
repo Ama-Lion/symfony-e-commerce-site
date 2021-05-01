@@ -65,5 +65,25 @@ class CartService {
         }
         
         return $detailedCart;
+
+    }
+
+    public function getTotalItems () : int
+    {
+        $detailedCart = [];
+
+        foreach ($this->session->get('cart', []) as $id => $qty) {
+            $product = $this->productRepository->find($id);
+            
+            if(!$product){
+                continue;
+            }
+
+            $detailedCart[] = new CartItem($product, $qty);
+        }
+        
+       $amount = count($detailedCart);
+       
+       return $amount;
     }
 }
