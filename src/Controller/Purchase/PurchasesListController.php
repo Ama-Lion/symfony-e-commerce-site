@@ -9,6 +9,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class PurchasesListController extends AbstractController 
 {
@@ -35,14 +36,12 @@ class PurchasesListController extends AbstractController
         $user = $this->security->getUser();
 
         if(!$user){
-            $url = $this->router->generate('homepage');
-            return new RedirectResponse($url);
+            throw new AccessDeniedException('You are not allowed to view this page');
         }
 
         $html = $this->twig->render('profile/index.html.twig', [
             'purchases' => $user->getPurchases(),
         ]);
-
         return new Response($html);
     }
 }
