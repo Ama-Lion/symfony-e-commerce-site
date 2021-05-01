@@ -13,17 +13,18 @@
                     {% include "cart/cart_table.html.twig" with {
                     'items' : items
                     }%}
-
                     <div class="alert alert-success mt-3">
                         <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks
                         </p>
                     </div>
                 </div>
-            </main> <!-- col.// -->
+            </main> 
 
+            {# aside #}
             {% include "cart/cart_aside.html.twig" with {
             'total' : total
             }%}
+
         </div>
 
     </div> <!-- container .//  -->
