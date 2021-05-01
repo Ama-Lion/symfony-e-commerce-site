@@ -17,9 +17,9 @@ class SecurityController extends AbstractController
     {
         $form = $this->createForm(LoginType::class);
         
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     $this->addFlash('success', 'Logged in successfully');
-        // }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', 'Logged in successfully');
+        }
     
         return $this->render('security/login.html.twig',[
             'form' => $form->createView(),

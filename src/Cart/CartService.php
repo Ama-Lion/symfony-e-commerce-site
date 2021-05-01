@@ -26,6 +26,10 @@ class CartService {
         $this->session->set('cart', $cart);
     }
 
+    public function emptyCart(){
+        $this->saveCart([]);
+    }
+
     public function add(int $id)
     {      
       // find the product in the local storage  array if it does not exist create a new array 

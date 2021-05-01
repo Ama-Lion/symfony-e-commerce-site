@@ -49,8 +49,14 @@
     </tbody>
 </table>
 <div class="card-body border-top">
+    {% if app.user %}
     <a href="{{path('products')}}" data-target="#confirmForm" data-toggle="modal"  class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </a>
-    <a  class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+    {% else %}
+    <h4>You need to Login to confirm purchase</h4>
+    <a href="{{path('security_login')}}" class="btn btn-primary">Login</a> 
+    <a href="{{path('security_login')}}" class="text-secondary">create an account</a> 
+    {% endif %}
+    <a href="{{path('products')}}"  class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
 </div>
 {% else %}
 <h1 class="text-center p-2">
