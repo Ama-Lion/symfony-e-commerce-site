@@ -1,0 +1,38 @@
+<aside class="col-md-3">
+    <div class="card mb-3">
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label>Have coupon?</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="" placeholder="Coupon code">
+                        <span class="input-group-append">
+                            <button class="btn btn-primary">Apply</button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div> <!-- card-body.// -->
+    </div> <!-- card .// -->
+    <div class="card">
+        <div class="card-body">
+            <dl class="dlist-align">
+                <dt>Total price:</dt>
+                <dd class="text-right">{{ total }}</dd>
+            </dl>
+            <dl class="dlist-align">
+                <dt>Discount:</dt>
+                <dd class="text-right">0</dd>
+            </dl>
+            <dl class="dlist-align">
+                <dt>Total:</dt>
+                <dd class="text-right  h5"><strong>{{total}}</strong></dd>
+            </dl>
+            <hr>
+            <p class="text-center mb-3">
+                <img src="{{asset('assets/images/misc/payments.png')}}" height="26">
+            </p>
+
+        </div> <!-- card-body.// -->
+    </div> <!-- card .// -->
+</aside> <!-- col.// -->
