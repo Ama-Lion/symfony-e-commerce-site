@@ -15,20 +15,17 @@ class PurchasesListController extends AbstractController
 {
 
     protected $security;
-    protected $router;
-    protected $twig;
 
-    public function __construct(Security $security, RouterInterface $router, Environment $twig)
+    public function __construct(Security $security)
     {
 
         $this->security = $security;
-        $this->router = $router;
-        $this->twig = $twig;
 
     }
     
     /**
      *@Route("/profile", name="Purchases_index")
+     *
      */
     public function index()
     {
@@ -39,9 +36,8 @@ class PurchasesListController extends AbstractController
             throw new AccessDeniedException('You are not allowed to view this page');
         }
 
-        $html = $this->twig->render('profile/index.html.twig', [
+        return $this->render('profile/index.html.twig', [
             'purchases' => $user->getPurchases(),
         ]);
-        return new Response($html);
     }
 }
