@@ -62,7 +62,7 @@ class PurchaseConfirmationController extends AbstractController
             ->setTotal($this->cartService->getTotal());
 
         $this->em->persist($purchase);
-        
+
         foreach ($this->cartService->getDetailedItems() as $cartItem) {
             $purchaseItem = new PurchaseItem;
             $purchaseItem->setPurchase($purchase)
@@ -73,12 +73,12 @@ class PurchaseConfirmationController extends AbstractController
                 ->setProductPrice($cartItem->product->getPrice())
                 ->setProductImage($cartItem->product->getPicture());
 
-            
+
             $this->em->persist($purchaseItem);
         }
 
 
-        $this->em->flush();
+        // $this->em->flush();
 
         $this->cartService->emptyCart();
         $this->addFlash('succes', 'Your Purchase was successfully processed');

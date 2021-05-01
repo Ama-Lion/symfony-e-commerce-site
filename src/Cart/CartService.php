@@ -72,7 +72,7 @@ class CartService {
         $this->saveCart($cart);
     }
 
-    public function getTotal(): int 
+    public function getTotal() : int 
     {
         $total = 0;
 
