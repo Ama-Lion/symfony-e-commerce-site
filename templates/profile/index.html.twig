@@ -12,12 +12,13 @@
     
     <div class="row">
         {# menu aside #}
+        {% include "profile/profile_menu_aside.html.twig" %}
         <main class="col-md-9">
-            {# profile info #}
-            {# oders #}
-        </main> <!-- col.// -->
+            {% include "profile/profile_info.html.twig" %}
+            {% include "profile/oders.html.twig" %}
+        </main>
     </div>
     
-    </div> <!-- container .//  -->
+    </div> 
     </section>
 {% endblock body %}
