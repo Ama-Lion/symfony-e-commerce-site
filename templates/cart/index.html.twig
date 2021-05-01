@@ -18,7 +18,7 @@
                         </p>
                     </div>
                 </div>
-            </main> 
+            </main>
 
             {# aside #}
             {% include "cart/cart_aside.html.twig" with {
@@ -28,5 +28,27 @@
         </div>
 
     </div> <!-- container .//  -->
+
+    <div class="modal fade" id="confirmForm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class=" modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Confirm Purchase by filling the form</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(confirmationForm) }}
+                    {{ form_widget(confirmationForm) }}
+                    <button type="submit" class="btn btn-success">
+                        Confirm
+                    </button>
+                    {{ form_end(confirmationForm) }}
+                </div>
+
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}
