@@ -2,9 +2,8 @@
 
 namespace App\Controller;
 
+use App\Cart\CartService;
 use App\Repository\ProductRepository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,34 +13,36 @@ class CartController extends AbstractController
     /**
      * @Route("/cart/add/{id}", name="cart_add", requirements={"id":"\d+"})
      */
-    public function add($id, ProductRepository $productRepository, SessionInterface $session)
+    public function add($id, ProductRepository $productRepository, CartService $cartService)
     {
 
-      // 0.  find product and check if its exist
-      $product = $productRepository->find($id);
-      if (!$product){
-          throw $this->createNotFoundException("The product $id does not exist");
-      }
-      // 1. find the product in the local storage  array 
-      // 2. if it does not exist create a new array 
-      $cart = $session->get('cart', []);
+        // 0.  find product and check if its exist
+        $product = $productRepository->find($id);
 
-      // 3.   check if the product id in the table      
-      // 4. else just add a new one with quantity one and quantity
-      if(array_key_exists($id, $cart)){
-          $cart[$id]++;
-        }else{
-            $cart[$id] = 1;
+        if (!$product) {
+            throw $this->createNotFoundException("The product $id does not exist");
         }
         
-        // 5. save the table updated in the session
-       $session->set('cart', $cart);
+        $cartService->add($id);
 
-        $session->remove('cart');
-        // dd($request->getSession()->get('cart'));
+        $this->addFlash('success', 'Product Added Successfully');
 
         return $this->redirectToRoute('show_product', [
             'slug' => $product->getSlug()
+        ]);
+    }
+
+    /**
+     * @Route("/cart", name="cart_show")
+     */
+    public function show(CartService $cartService)
+    {
+        $detailedCart = $cartService->getDetailedItems();
+        $total = $cartService->getTotal() ;
+
+        return $this->render('cart/index.html.twig', [
+            'items' => $detailedCart,
+            'total' => $total
         ]);
     }
 }
