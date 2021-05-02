@@ -17,13 +17,17 @@ class PurchasePaymentSuccessController extends AbstractController
     public function success($id, PurchaseRepository $purchaseRepository, EntityManagerInterface $em, CartService $cartService)
     {
         $purchase = $purchaseRepository->find($id);
-        
-        if(!$purchase || ($purchase && $purchase->getUser() !== $this->getUser()) || ($purchase && $purchase->getStatus() === Purchase::STATUS_PAID))
+
+        if (
+            !$purchase || 
+            ($purchase && $purchase->getUser() !== $this->getUser()) ||
+             ($purchase && $purchase->getStatus() === Purchase::STATUS_PAID)
+        ) 
         {
             $this->addFlash('warning', 'The order does not exist');
             return $this->redirectToRoute('purchases_index');
         }
-        
+
         $purchase->setStatus(Purchase::STATUS_PAID);
         $em->flush();
 
@@ -31,6 +35,5 @@ class PurchasePaymentSuccessController extends AbstractController
 
         $this->addFlash('success', 'Purchase Ordered successfully');
         return $this->redirectToRoute('purchases_index');
-
-    } 
+    }
 }
