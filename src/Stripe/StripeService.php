@@ -19,7 +19,7 @@ class StripeService
     {
         return $this->publickey;
     }
-    
+
     public function getPaymentIntent(Purchase $purchase)
     {
 
