@@ -78,11 +78,10 @@ class PurchaseConfirmationController extends AbstractController
         }
 
 
-        // $this->em->flush();
+        $this->em->flush();
 
-        $this->cartService->emptyCart();
-        $this->addFlash('succes', 'Your Purchase was successfully processed');
-
-        return $this->redirectToRoute('purchases_index');
+        return $this->redirectToRoute('purchase_payment_form', [
+            'id' => $purchase->getId()
+        ]);
     }
 }
