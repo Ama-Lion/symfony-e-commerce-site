@@ -1,0 +1,30 @@
+<h1>Hello {{ user.firstName }}</h1>
+<p>Thank You, You order was successful registered u can find the details down below</p>
+<table>
+    <thead>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Unit Price</th> 
+        <th>Total</th>
+    </thead>
+    <tbody>
+        {% for item in purchase.purchaseItems %}
+            <tr>
+                <td>{{item.productName}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.productPrice / 100}}</td>
+                <td>{{item.total / 100}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="3">Total :</td>
+            <td>
+                {{purchase.total / 100}} €
+            </td>
+        </tr>
+    </tfoot>
+
+</table>
